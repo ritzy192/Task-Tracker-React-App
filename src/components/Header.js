@@ -1,25 +1,23 @@
-import { getQueriesForElement } from "@testing-library/react"
 import PropTypes from "prop-types"
+import Button from './Button'
+
 const Header = ({title}) => {
   return (
-    <header style={headerStyle}>{title}
-        <h2 style={{color:'red'}}>Second Header</h2>
+    <header className="header">
+        <h1>{title}</h1>
+        <Button color='lightgreen' text='Add'/>
+        <Button color='Yellow' text='Delete All'/>
     </header>
     
   )
 }
 
 Header.defaultProps = {
-    title: 'Default Task Tracker'
+    title: 'Task Tracker'
 }
 
 Header.propTypes = {
     title: PropTypes.string.isRequired
-}
-
-const headerStyle = {
-    color: 'Yellow',
-    backgroundColor: 'Green'
 }
 
 export default Header
