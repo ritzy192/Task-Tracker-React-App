@@ -1,5 +1,5 @@
 import Task from './Task'
-export const Tasks = ({tasks}) => {
+const Tasks = ({tasks}) => {
     return (
         <>
             {tasks.map((task)=>{
