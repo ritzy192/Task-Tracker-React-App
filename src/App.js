@@ -10,28 +10,28 @@ function App() {
         id:'1',
         title:'Task 1',
         description: 'This is task 1',
-        completed: 'False',
+        completed: true,
         reminder: true
     },
     {
         id:'2',
         title:'Task 2',
         description: 'This is task 2',
-        completed: 'true',
+        completed: false,
         reminder: false
     },
     {
         id:'3',
         title:'Task 3',
         description: 'This is task 3',
-        completed: 'False',
+        completed: true,
         reminder: false
     },
     {
         id:'4',
         title:'Task 4',
         description: 'This is task 4',
-        completed: 'true',
+        completed: false,
         reminder: false
     }])
     
@@ -48,10 +48,17 @@ function App() {
         })
       )
     }
+    //Add Task
+    const addTask = (task) =>{
+      console.log(task)
+      const id = Math.floor(Math.random() * 10000) + 1
+      const newTask = {id,...task}
+      setTasks([...tasks,newTask])
+    }
   return (
     <div className='container'>
         <Header/>
-        <AddTask/>
+        <AddTask onAddTask = {addTask}/>
         {tasks.length> 0 ? 
           <Tasks 
             tasks= {tasks} 

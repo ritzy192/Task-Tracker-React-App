@@ -1,24 +1,36 @@
 import { useState } from "react"
 
-const AddTask = () => {
-    const [text,setText] = useState('')
+const AddTask = ({onAddTask}) => {
+    const [title,setTitle] = useState('')
     const [reminder,setReminder] = useState(false)
-  return (
-    <form className="add-form">
+    
+    const onSubmit = (e)=>{
+        e.preventDefault()
+        const completed = false
+        if(!title)
+            return alert('Task can not be empty');
+        onAddTask({title,reminder,completed}) 
+        setTitle('')
+        setReminder(false)
+    }
+
+    return (
+    <form className="add-form" onSubmit={onSubmit}>
         <div className="form-control">
             <label>Task</label>
             <input 
                 type='text' 
                 placeholder='Add Task' 
-                value={text} 
+                value={title} 
                 onChange={(e)=>{
-                    setText(e.target.value)
+                    setTitle(e.target.value)
                 }}></input>
         </div>
         <div className="form-control form-control-check">
             <label>Set Reminder</label>
             <input 
                 type='checkbox'
+                checked={reminder}
                 value={reminder} 
                 onChange={(e)=>{
                     setReminder(e.currentTarget.checked)
