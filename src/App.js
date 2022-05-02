@@ -4,6 +4,7 @@ import AddTask from "./AddTask";
 import { useState } from "react"
 
 function App() {
+  const [showAddTask, setShowAddTak] = useState(false)
   const [tasks, setTasks] = useState([
         
     {
@@ -55,10 +56,17 @@ function App() {
       const newTask = {id,...task}
       setTasks([...tasks,newTask])
     }
+    //Delete All Tasks
+    const deleteAllTasks = () =>{
+      setTasks('')
+      console.log(tasks)
+    }
   return (
     <div className='container'>
-        <Header/>
-        <AddTask onAddTask = {addTask}/>
+        <Header onAddTaskClick = {()=>{
+          setShowAddTak(!showAddTask)
+        }} onDeleteAll={deleteAllTasks}/>
+        {showAddTask && <AddTask onAddTask = {addTask}/>}  {/* && is the shorthand for ternary operator */}
         {tasks.length> 0 ? 
           <Tasks 
             tasks= {tasks} 
