@@ -11,7 +11,7 @@ const Task = ({task, onDelete, onToggle}) => {
                 onClick={()=>onDelete(task.id)}>
             </FaTrash>
         </h3>
-        <p>Completed: {task.completed}</p>
+        <p>Completed: {String(task.completed)}</p>
     </div>
   )
 }
