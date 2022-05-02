@@ -63,9 +63,12 @@ function App() {
     }
   return (
     <div className='container'>
-        <Header onAddTaskClick = {()=>{
+        <Header 
+        onAddTaskClick = {()=>{
           setShowAddTak(!showAddTask)
-        }} onDeleteAll={deleteAllTasks}/>
+        }} 
+        onDeleteAll={deleteAllTasks}
+        showAddButton = {showAddTask}/>
         {showAddTask && <AddTask onAddTask = {addTask}/>}  {/* && is the shorthand for ternary operator */}
         {tasks.length> 0 ? 
           <Tasks 
