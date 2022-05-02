@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Tasks from './components/Tasks'
 import AddTask from "./AddTask";
 import { useState, useEffect } from "react"
+import { FaArrowAltCircleDown } from "react-icons/fa";
 
 function App() {
   const [showAddTask, setShowAddTak] = useState(false)
@@ -20,6 +21,12 @@ function App() {
       const data = await res.json()
       return data
     }
+
+    const fetchTask = async (id) =>{
+      const res = await fetch(`http://localhost:5000/tasks/${id}`)
+      const data = await res.json()
+      return data
+    }
     //Delete Task
     const deleteTask = async (id) => {
       await fetch(`http://localhost:5000/tasks/${id}`, {
@@ -29,10 +36,20 @@ function App() {
     }
     
     //Toggle reminder
-    const toggleReminder = (id) => {
+    const toggleReminder = async (id) => {
+      const taskToToggle = await fetchTask(id)
+      const updTask = {...taskToToggle, reminder: !taskToToggle.reminder}
+      const res = await fetch(`http://localhost:5000/tasks/${id}`,{
+        method: 'PUT',
+        headers:{
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(updTask)
+      })
+      const data = await res.json()
       setTasks(
         tasks.map((task) => {
-          return task.id ===id ? { ...task,reminder: !task.reminder} : task
+          return task.id ===id ? { ...task,reminder: data.reminder} : task
         })
       )
     }

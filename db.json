@@ -5,7 +5,7 @@
       "title": "Task 1",
       "description": "This is task 1",
       "completed": true,
-      "reminder": true
+      "reminder": false
     },
     {
       "id": "2",
@@ -19,7 +19,7 @@
       "title": "Task 3",
       "description": "This is task 3",
       "completed": true,
-      "reminder": false
+      "reminder": true
     },
     {
       "title": "Task 4",
@@ -29,7 +29,7 @@
     },
     {
       "title": "Task 5",
-      "reminder": true,
+      "reminder": false,
       "completed": false,
       "id": "YcYRZdb"
     },
